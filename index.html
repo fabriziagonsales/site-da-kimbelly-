@@ -113,6 +113,20 @@ section{padding:100px 24px;max-width:1200px;margin:0 auto}
 .comp-section{background:var(--sand);padding:100px 24px;max-width:none}
 .comp-inner{max-width:1200px;margin:0 auto}
 
+/* PROVA SOCIAL */
+.prints-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;max-width:1100px;margin:0 auto}
+.print-card{border-radius:14px;overflow:hidden;box-shadow:0 15px 40px rgba(42,26,20,.12);transition:transform .3s;background:#fff;cursor:pointer}
+.print-card:hover{transform:translateY(-6px)}
+.print-card img{width:100%;display:block}
+@media(max-width:900px){.prints-grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:500px){.prints-grid{grid-template-columns:1fr 1fr;gap:12px}}
+
+/* LIGHTBOX */
+.lightbox{position:fixed;inset:0;background:rgba(10,5,2,.92);z-index:200;display:none;align-items:center;justify-content:center;padding:30px;cursor:zoom-out}
+.lightbox.open{display:flex}
+.lightbox img{max-width:95%;max-height:95vh;border-radius:8px;box-shadow:0 30px 80px rgba(0,0,0,.6)}
+.lightbox-close{position:absolute;top:20px;right:26px;background:none;border:none;color:white;font-size:40px;cursor:pointer;line-height:1}
+
 /* ANTES/DEPOIS GRID */
 .ad-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px;max-width:900px;margin:0 auto}
 .ad-card{position:relative;border-radius:16px;overflow:hidden;box-shadow:0 20px 50px rgba(42,26,20,.15);background:#000}
@@ -263,7 +277,7 @@ footer p{opacity:.6}
 <!-- SOBRE -->
 <section id="sobre" class="about">
   <div class="about-img reveal">
-    <img src="img/sobre.jpg" alt="Trabalho finalizado no studio">
+    <img src="img/kim.jpg" alt="Kimberlly Mathias no studio">
   </div>
   <div class="about-text reveal">
     <span class="eyebrow">Sobre o Studio</span>
@@ -464,6 +478,8 @@ footer p{opacity:.6}
     <div class="gallery-item"><img src="img/g-labios-gloss.jpg" alt="Micropigmentação labial"></div>
     <div class="gallery-item"><img src="img/g-cilios.jpg" alt="Extensão de cílios"></div>
     <div class="gallery-item"><img src="img/g-sobrancelha-ruiva.jpg" alt="Design de sobrancelhas"></div>
+    <div class="gallery-item"><img src="img/sobre.jpg" alt="Sobrancelha com cílios aplicados"></div>
+    <div class="gallery-item"><img src="img/hero.jpg" alt="Cliente após micropigmentação"></div>
   </div>
 </section>
 
@@ -511,6 +527,27 @@ footer p{opacity:.6}
     </div>
   </div>
 </section>
+
+<!-- PROVA SOCIAL -->
+<section id="prova">
+  <div class="section-head reveal">
+    <span class="eyebrow">Prova social</span>
+    <h2>Feedbacks reais das clientes</h2>
+    <p>Conversas do Instagram e WhatsApp — autoestima restaurada depois de cada atendimento.</p>
+  </div>
+  <div class="prints-grid reveal">
+    <div class="print-card" onclick="abrirLightbox('img/depo-natasha.jpg')"><img src="img/depo-natasha.jpg" alt="Feedback Natasha"></div>
+    <div class="print-card" onclick="abrirLightbox('img/depo-danielle.jpg')"><img src="img/depo-danielle.jpg" alt="Feedback Danielle"></div>
+    <div class="print-card" onclick="abrirLightbox('img/depo-manuela.jpg')"><img src="img/depo-manuela.jpg" alt="Feedback Manuela"></div>
+    <div class="print-card" onclick="abrirLightbox('img/depo-rebeca.jpg')"><img src="img/depo-rebeca.jpg" alt="Feedback Rebeca"></div>
+  </div>
+</section>
+
+<!-- LIGHTBOX -->
+<div class="lightbox" id="lightbox" onclick="fecharLightbox()">
+  <button class="lightbox-close" onclick="fecharLightbox()">×</button>
+  <img id="lightboxImg" src="" alt="">
+</div>
 
 <!-- CONTATO -->
 <section id="contato" class="contact">
@@ -640,6 +677,15 @@ function moverDepo(dir){
   mostrarDepo();
 }
 setInterval(()=>moverDepo(1),6000);
+
+// Lightbox
+function abrirLightbox(src){
+  document.getElementById('lightboxImg').src = src;
+  document.getElementById('lightbox').classList.add('open');
+}
+function fecharLightbox(){
+  document.getElementById('lightbox').classList.remove('open');
+}
 
 // Máscara telefone
 function mascaraTel(el){
