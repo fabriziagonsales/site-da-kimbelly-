@@ -109,18 +109,17 @@ section{padding:100px 24px;max-width:1200px;margin:0 auto}
 .gallery-item::after{content:'';position:absolute;inset:0;background:linear-gradient(to top,rgba(42,26,20,.6),transparent 50%);opacity:0;transition:opacity .3s}
 .gallery-item:hover::after{opacity:1}
 
-/* COMPARISON */
+/* ANTES/DEPOIS SECTION */
 .comp-section{background:var(--sand);padding:100px 24px;max-width:none}
-.comp-inner{max-width:900px;margin:0 auto}
-.comp{position:relative;height:500px;border-radius:16px;overflow:hidden;user-select:none;cursor:ew-resize;box-shadow:0 20px 60px rgba(42,26,20,.2)}
-.comp-before,.comp-after{position:absolute;inset:0;background-size:cover;background-position:center}
-.comp-before{background-image:url('https://images.pexels.com/photos/3997378/pexels-photo-3997378.jpeg?auto=compress&cs=tinysrgb&w=900')}
-.comp-after{background-image:url('https://images.pexels.com/photos/3985321/pexels-photo-3985321.jpeg?auto=compress&cs=tinysrgb&w=900');clip-path:inset(0 50% 0 0)}
-.comp-handle{position:absolute;top:0;bottom:0;left:50%;width:3px;background:#fff;box-shadow:0 0 20px rgba(0,0,0,.3);z-index:3}
-.comp-handle::after{content:'⇆';position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);background:#fff;width:44px;height:44px;border-radius:50%;display:flex;align-items:center;justify-content:center;color:var(--dark);font-size:18px;font-weight:bold;box-shadow:0 6px 20px rgba(0,0,0,.25)}
-.comp-label{position:absolute;top:18px;padding:8px 16px;background:rgba(42,26,20,.85);color:var(--cream);font-size:11px;letter-spacing:2px;border-radius:20px;z-index:2;text-transform:uppercase}
-.comp-label.left{left:18px}
-.comp-label.right{right:18px}
+.comp-inner{max-width:1200px;margin:0 auto}
+
+/* ANTES/DEPOIS GRID */
+.ad-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px;max-width:900px;margin:0 auto}
+.ad-card{position:relative;border-radius:16px;overflow:hidden;box-shadow:0 20px 50px rgba(42,26,20,.15);background:#000}
+.ad-card img{width:100%;height:auto;display:block;transition:transform .5s}
+.ad-card:hover img{transform:scale(1.03)}
+.ad-card span{position:absolute;bottom:14px;left:14px;background:rgba(42,26,20,.85);color:var(--cream);font-size:11px;letter-spacing:2px;padding:7px 14px;border-radius:20px;text-transform:uppercase}
+@media(max-width:700px){.ad-grid{grid-template-columns:1fr}}
 
 /* DEPOIMENTOS */
 .deps{position:relative;max-width:800px;margin:0 auto;min-height:280px}
@@ -253,7 +252,7 @@ footer p{opacity:.6}
     </div>
   </div>
   <div class="hero-img reveal">
-    <img src="https://images.pexels.com/photos/3997379/pexels-photo-3997379.jpeg?auto=compress&cs=tinysrgb&w=700" alt="Design de sobrancelhas">
+    <img src="img/hero.jpg" alt="Trabalho da Kimberlly — sobrancelha e micropigmentação labial">
     <div class="hero-badge">
       <div class="hero-badge-num">+500</div>
       <div class="hero-badge-txt">clientes atendidas com amor</div>
@@ -264,7 +263,7 @@ footer p{opacity:.6}
 <!-- SOBRE -->
 <section id="sobre" class="about">
   <div class="about-img reveal">
-    <img src="https://images.pexels.com/photos/3997984/pexels-photo-3997984.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Kimberlly no estúdio">
+    <img src="img/sobre.jpg" alt="Trabalho finalizado no studio">
   </div>
   <div class="about-text reveal">
     <span class="eyebrow">Sobre o Studio</span>
@@ -311,7 +310,7 @@ footer p{opacity:.6}
           <div class="service-meta"><span>⏱ 30 min</span></div>
           <p class="service-desc">Design personalizado com aplicação de henna para uniformizar cor e preencher falhas.</p>
           <div class="service-price">
-            <div class="price">R$ 80<small>,00</small></div>
+            <div class="price">R$ 120<small>,00</small></div>
             <button class="service-book" onclick="agendarServico('Design com Henna')">Agendar</button>
           </div>
         </div>
@@ -384,6 +383,15 @@ footer p{opacity:.6}
       <div class="service-group-title"><h3>Cílios</h3></div>
       <div class="service-grid">
         <div class="service-card">
+          <h4>Lash Lifting</h4>
+          <div class="service-meta"><span>⏱ 1h30</span></div>
+          <p class="service-desc">Técnica que curva e alonga os cílios naturais, realçando o olhar sem extensão.</p>
+          <div class="service-price">
+            <div class="price">R$ 200<small>,00</small></div>
+            <button class="service-book" onclick="agendarServico('Lash Lifting')">Agendar</button>
+          </div>
+        </div>
+        <div class="service-card">
           <h4>Extensão de Cílios (Nova)</h4>
           <div class="service-meta"><span>⏱ 2 horas</span></div>
           <p class="service-desc">Aplicação completa de extensão, fio a fio ou volume, com curvatura personalizada.</p>
@@ -404,10 +412,19 @@ footer p{opacity:.6}
         <div class="service-card">
           <h4>Manutenção até 20 dias</h4>
           <div class="service-meta"><span>⏱ 2 horas</span></div>
-          <p class="service-desc">Manutenção mais completa para quem espacializa um pouco mais entre as sessões.</p>
+          <p class="service-desc">Manutenção mais completa para quem espaça um pouco mais entre as sessões.</p>
           <div class="service-price">
             <div class="price">R$ 180<small>,00</small></div>
             <button class="service-book" onclick="agendarServico('Manutenção de Cílios 20 dias')">Agendar</button>
+          </div>
+        </div>
+        <div class="service-card">
+          <h4>Manutenção até 30 dias</h4>
+          <div class="service-meta"><span>⏱ 2 horas</span></div>
+          <p class="service-desc">Ideal para quem precisa de um intervalo maior entre as manutenções.</p>
+          <div class="service-price">
+            <div class="price">R$ 200<small>,00</small></div>
+            <button class="service-book" onclick="agendarServico('Manutenção de Cílios 30 dias')">Agendar</button>
           </div>
         </div>
       </div>
@@ -417,18 +434,21 @@ footer p{opacity:.6}
 
 <!-- ANTES E DEPOIS -->
 <section class="comp-section">
-  <div class="comp-inner">
+  <div class="comp-inner" style="max-width:1200px">
     <div class="section-head reveal">
       <span class="eyebrow">Transformação</span>
       <h2>Antes & Depois</h2>
-      <p>Arraste o controle para ver a diferença que um bom design faz.</p>
+      <p>Resultados reais de micropigmentação labial feitas aqui no studio.</p>
     </div>
-    <div class="comp reveal" id="comp">
-      <div class="comp-before"></div>
-      <div class="comp-after" id="compAfter"></div>
-      <div class="comp-label left">Antes</div>
-      <div class="comp-label right">Depois</div>
-      <div class="comp-handle" id="compHandle"></div>
+    <div class="ad-grid reveal">
+      <div class="ad-card">
+        <img src="img/antes-depois-1.jpg" alt="Antes e depois micropigmentação labial">
+        <span>Micropigmentação Labial</span>
+      </div>
+      <div class="ad-card">
+        <img src="img/antes-depois-2.jpg" alt="Antes e depois micropigmentação labial">
+        <span>Micropigmentação Labial</span>
+      </div>
     </div>
   </div>
 </section>
@@ -441,12 +461,9 @@ footer p{opacity:.6}
     <p>Um pouquinho da magia que acontece no studio todos os dias.</p>
   </div>
   <div class="gallery reveal">
-    <div class="gallery-item"><img src="https://images.pexels.com/photos/3985318/pexels-photo-3985318.jpeg?auto=compress&cs=tinysrgb&w=500" alt="Design"></div>
-    <div class="gallery-item"><img src="https://images.pexels.com/photos/3997382/pexels-photo-3997382.jpeg?auto=compress&cs=tinysrgb&w=500" alt="Micropigmentação"></div>
-    <div class="gallery-item"><img src="https://images.pexels.com/photos/2533266/pexels-photo-2533266.jpeg?auto=compress&cs=tinysrgb&w=500" alt="Cílios"></div>
-    <div class="gallery-item"><img src="https://images.pexels.com/photos/3997385/pexels-photo-3997385.jpeg?auto=compress&cs=tinysrgb&w=500" alt="Sobrancelhas"></div>
-    <div class="gallery-item"><img src="https://images.pexels.com/photos/3373716/pexels-photo-3373716.jpeg?auto=compress&cs=tinysrgb&w=500" alt="Brow lamination"></div>
-    <div class="gallery-item"><img src="https://images.pexels.com/photos/3065209/pexels-photo-3065209.jpeg?auto=compress&cs=tinysrgb&w=500" alt="Studio"></div>
+    <div class="gallery-item"><img src="img/g-labios-gloss.jpg" alt="Micropigmentação labial"></div>
+    <div class="gallery-item"><img src="img/g-cilios.jpg" alt="Extensão de cílios"></div>
+    <div class="gallery-item"><img src="img/g-sobrancelha-ruiva.jpg" alt="Design de sobrancelhas"></div>
   </div>
 </section>
 
@@ -460,26 +477,30 @@ footer p{opacity:.6}
     <div class="deps reveal" id="deps">
       <div class="dep active">
         <div class="dep-stars">★★★★★</div>
-        <p class="dep-text">"A Kim é uma profissional incrível. Fiz a micropigmentação das sobrancelhas e o resultado superou toda expectativa. Super natural, exatamente como eu queria!"</p>
+        <p class="dep-text">"Tá lindaaa, eu tô amando! Obrigada pelo cuidado 💛"</p>
         <div class="dep-author">
-          <img src="https://images.pexels.com/photos/774909/pexels-photo-774909.jpeg?auto=compress&cs=tinysrgb&w=100" alt="Juliana">
-          <div class="dep-name"><strong>Juliana Costa</strong><span>Cliente desde 2023</span></div>
+          <div class="dep-name" style="text-align:center"><strong>Natasha</strong><span>Micropigmentação Labial</span></div>
         </div>
       </div>
       <div class="dep">
         <div class="dep-stars">★★★★★</div>
-        <p class="dep-text">"Atendimento maravilhoso, ambiente impecável e mãos de fada. Já fiz brow lamination e extensão de cílios, virei cliente para sempre!"</p>
+        <p class="dep-text">"Amei seu trabalho, Kim! Parabéns. E a autoestima de volta ✨"</p>
         <div class="dep-author">
-          <img src="https://images.pexels.com/photos/1036623/pexels-photo-1036623.jpeg?auto=compress&cs=tinysrgb&w=100" alt="Amanda">
-          <div class="dep-name"><strong>Amanda Pereira</strong><span>Cliente desde 2022</span></div>
+          <div class="dep-name" style="text-align:center"><strong>Danielle Bedin</strong><span>Micropigmentação de Sobrancelhas</span></div>
         </div>
       </div>
       <div class="dep">
         <div class="dep-stars">★★★★★</div>
-        <p class="dep-text">"A micropigmentação labial ficou perfeita! A Kim é super atenciosa, explica tudo e dá toda segurança. Recomendo de olhos fechados."</p>
+        <p class="dep-text">"Quase um mês e não caiu quase NADA! Mãos de fada 🧚"</p>
         <div class="dep-author">
-          <img src="https://images.pexels.com/photos/1130626/pexels-photo-1130626.jpeg?auto=compress&cs=tinysrgb&w=100" alt="Marina">
-          <div class="dep-name"><strong>Marina Souza</strong><span>Cliente desde 2024</span></div>
+          <div class="dep-name" style="text-align:center"><strong>Manuela Pimentel</strong><span>Extensão de Cílios</span></div>
+        </div>
+      </div>
+      <div class="dep">
+        <div class="dep-stars">★★★★★</div>
+        <p class="dep-text">"Que perfeição! Com certeza eu tô me sentindo muito mais linda, obrigadaa 💖"</p>
+        <div class="dep-author">
+          <div class="dep-name" style="text-align:center"><strong>Rebeca</strong><span>Brow Lamination</span></div>
         </div>
       </div>
     </div>
@@ -540,9 +561,11 @@ footer p{opacity:.6}
           <option>Retoque de Micropigmentação</option>
           <option>Micropigmentação Labial</option>
           <option>Retoque Labial</option>
+          <option>Lash Lifting</option>
           <option>Extensão de Cílios - Nova</option>
           <option>Manutenção de Cílios 15 dias</option>
           <option>Manutenção de Cílios 20 dias</option>
+          <option>Manutenção de Cílios 30 dias</option>
         </select>
       </div>
       <div class="form-row">
@@ -597,27 +620,6 @@ const io = new IntersectionObserver(entries=>{
   entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('visible'); io.unobserve(e.target); } });
 },{threshold:.1});
 document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
-
-// Comparison slider
-(function(){
-  const comp = document.getElementById('comp');
-  const after = document.getElementById('compAfter');
-  const handle = document.getElementById('compHandle');
-  let drag = false;
-  const mover = (x)=>{
-    const rect = comp.getBoundingClientRect();
-    let pct = ((x-rect.left)/rect.width)*100;
-    pct = Math.max(0,Math.min(100,pct));
-    after.style.clipPath = `inset(0 ${100-pct}% 0 0)`;
-    handle.style.left = pct+'%';
-  };
-  comp.addEventListener('mousedown',e=>{drag=true;mover(e.clientX);});
-  window.addEventListener('mouseup',()=>drag=false);
-  window.addEventListener('mousemove',e=>{if(drag)mover(e.clientX);});
-  comp.addEventListener('touchstart',e=>{drag=true;mover(e.touches[0].clientX);});
-  window.addEventListener('touchend',()=>drag=false);
-  window.addEventListener('touchmove',e=>{if(drag)mover(e.touches[0].clientX);});
-})();
 
 // Depoimentos
 let depIdx = 0;
@@ -674,7 +676,7 @@ function aceitarLgpd(){
 
 // CHATBOT
 const respostas = {
-  'precos':{texto:'Nossos valores começam em R$ 60 (Design com Henna) e vão até R$ 750 (Micropigmentação). Quer ver o cardápio completo?',opts:['Ver serviços','Outras perguntas']},
+  'precos':{texto:'Nossos valores começam em R$ 80 (Design Personalizado) e vão até R$ 750 (Micropigmentação). Quer ver o cardápio completo?',opts:['Ver serviços','Outras perguntas']},
   'horarios':{texto:'Atendo de segunda a sábado, das 9h às 19h, com hora marcada. Posso te agendar?',opts:['Quero agendar','Outras perguntas']},
   'micro':{texto:'A micropigmentação dura em média 1 a 2 anos (sobrancelha) e 2 a 3 anos (lábio). Fazemos retoque após 30 dias.',opts:['Outras perguntas']},
   'cilios':{texto:'A extensão dura até 3 semanas. Indicamos manutenção entre 15 e 20 dias para manter o volume.',opts:['Outras perguntas']},
