@@ -40,24 +40,44 @@ nav.scrolled{box-shadow:0 2px 20px rgba(42,26,20,.08);padding:12px 0}
 .burger{display:none;font-size:26px;cursor:pointer;background:none;border:none;color:var(--dark)}
 
 /* HERO */
-.hero{min-height:100vh;display:grid;grid-template-columns:1fr 1fr;align-items:center;gap:60px;padding:120px 24px 60px;max-width:1200px;margin:0 auto}
-.hero-text h1{font-size:clamp(44px,6vw,76px);margin-bottom:24px}
-.hero-text h1 em{color:var(--gold);font-style:italic}
-.hero-text p.lead{font-size:18px;color:var(--muted);margin-bottom:40px;max-width:460px}
-.hero-cta{display:flex;gap:16px;flex-wrap:wrap}
+.hero{min-height:100vh;display:grid;grid-template-columns:1fr 1fr;align-items:center;gap:60px;padding:120px 24px 60px;max-width:1200px;margin:0 auto;position:relative}
+.hero-text h1{font-size:clamp(44px,6vw,76px);margin-bottom:24px;opacity:0;animation:heroFadeUp .9s .1s ease forwards}
+.hero-text h1 em{color:var(--gold);font-style:italic;position:relative;display:inline-block}
+.hero-text h1 em::after{content:'';position:absolute;left:0;right:0;bottom:2px;height:3px;background:linear-gradient(90deg,transparent,var(--gold),transparent);transform:scaleX(0);transform-origin:left;animation:heroUnderline 1.2s 1s ease forwards}
+.hero-text p.lead{font-size:18px;color:var(--muted);margin-bottom:40px;max-width:460px;opacity:0;animation:heroFadeUp .9s .35s ease forwards}
+.hero-cta{display:flex;gap:16px;flex-wrap:wrap;opacity:0;animation:heroFadeUp .9s .55s ease forwards}
 .btn{display:inline-flex;align-items:center;gap:10px;padding:15px 32px;border-radius:30px;font-weight:500;font-size:14px;letter-spacing:1px;transition:all .3s;cursor:pointer;border:none}
 .btn-primary{background:var(--dark);color:var(--cream)}
 .btn-primary:hover{background:var(--gold);transform:translateY(-2px);box-shadow:0 10px 30px rgba(176,141,87,.3)}
 .btn-outline{border:1.5px solid var(--dark);color:var(--dark);background:transparent}
 .btn-outline:hover{background:var(--dark);color:var(--cream)}
-.hero-img{position:relative}
-.hero-img img{width:100%;height:620px;object-fit:cover;border-radius:300px 300px 20px 20px;box-shadow:0 30px 80px rgba(42,26,20,.25)}
-.hero-badge{position:absolute;bottom:40px;left:0;background:var(--cream);padding:20px 26px;border-radius:16px;box-shadow:0 20px 50px rgba(42,26,20,.15);display:flex;align-items:center;gap:14px}
+.hero-img{position:relative;opacity:0;animation:heroFadeIn 1.2s .2s ease forwards}
+.hero-img-wrap{position:relative;border-radius:300px 300px 20px 20px;overflow:hidden;box-shadow:0 30px 80px rgba(42,26,20,.25)}
+.hero-img-wrap::after{content:'';position:absolute;inset:0;background:linear-gradient(115deg,transparent 30%,rgba(250,243,236,.35) 50%,transparent 70%);transform:translateX(-100%);animation:heroShimmer 5s 2s ease-in-out infinite}
+.hero-img img{width:100%;height:620px;object-fit:cover;display:block;animation:heroKen 18s ease-in-out infinite alternate}
+.hero-sparkle{position:absolute;width:14px;height:14px;pointer-events:none;color:var(--gold);filter:drop-shadow(0 0 6px rgba(176,141,87,.6))}
+.hero-sparkle svg{width:100%;height:100%}
+.hero-sparkle.s1{top:8%;right:-6px;animation:sparkleFloat 4s ease-in-out infinite}
+.hero-sparkle.s2{top:35%;left:-14px;width:10px;height:10px;animation:sparkleFloat 3.2s .8s ease-in-out infinite}
+.hero-sparkle.s3{top:62%;right:6%;width:18px;height:18px;animation:sparkleFloat 4.6s 1.4s ease-in-out infinite}
+.hero-sparkle.s4{bottom:20%;left:14%;width:12px;height:12px;animation:sparkleFloat 3.8s .4s ease-in-out infinite}
+.hero-ring{position:absolute;inset:-14px;border:1px dashed rgba(176,141,87,.35);border-radius:300px 300px 30px 30px;animation:heroRingPulse 4s ease-in-out infinite;pointer-events:none}
+.hero-badge{position:absolute;bottom:40px;left:0;background:var(--cream);padding:20px 26px;border-radius:16px;box-shadow:0 20px 50px rgba(42,26,20,.15);display:flex;align-items:center;gap:14px;opacity:0;animation:heroBadgeIn .8s 1s ease forwards,heroBadgeFloat 4s 2s ease-in-out infinite}
 .hero-badge-num{font-family:'Cormorant Garamond',serif;font-size:40px;color:var(--gold);font-weight:600;line-height:1}
 .hero-badge-txt{font-size:13px;color:var(--muted);max-width:100px;line-height:1.3}
+@keyframes heroFadeUp{from{opacity:0;transform:translateY(30px)}to{opacity:1;transform:translateY(0)}}
+@keyframes heroFadeIn{from{opacity:0}to{opacity:1}}
+@keyframes heroUnderline{to{transform:scaleX(1)}}
+@keyframes heroKen{0%{transform:scale(1) translate(0,0)}100%{transform:scale(1.08) translate(-1%,-2%)}}
+@keyframes heroShimmer{0%{transform:translateX(-100%)}45%,100%{transform:translateX(100%)}}
+@keyframes sparkleFloat{0%,100%{opacity:0;transform:translateY(0) scale(.6) rotate(0)}50%{opacity:1;transform:translateY(-8px) scale(1) rotate(180deg)}}
+@keyframes heroRingPulse{0%,100%{opacity:.4;transform:scale(1)}50%{opacity:.8;transform:scale(1.02)}}
+@keyframes heroBadgeIn{from{opacity:0;transform:translateY(20px) scale(.9)}to{opacity:1;transform:translateY(0) scale(1)}}
+@keyframes heroBadgeFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-6px)}}
 
 /* SECTIONS */
 section{padding:100px 24px;max-width:1200px;margin:0 auto}
+section[id]{scroll-margin-top:80px}
 .section-head{text-align:center;margin-bottom:60px}
 .section-head .eyebrow{display:inline-block;color:var(--gold);font-size:12px;letter-spacing:3px;margin-bottom:14px;text-transform:uppercase;font-weight:500}
 .section-head h2{font-size:clamp(36px,4.5vw,56px);margin-bottom:16px}
@@ -107,12 +127,14 @@ section{padding:100px 24px;max-width:1200px;margin:0 auto}
 @media(max-width:480px){.service-grid,.service-grid:has(> .service-card:nth-child(2):last-child){grid-template-columns:1fr}}
 
 /* GALERIA */
-.gallery{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
-.gallery-item{position:relative;overflow:hidden;border-radius:12px;aspect-ratio:3/4;cursor:pointer}
+.gallery{display:grid;grid-template-columns:repeat(6,1fr);gap:12px;max-width:1000px;margin:0 auto}
+.gallery-item{position:relative;overflow:hidden;border-radius:10px;aspect-ratio:1/1;cursor:pointer}
 .gallery-item img{width:100%;height:100%;object-fit:cover;transition:transform .6s}
 .gallery-item:hover img{transform:scale(1.08)}
 .gallery-item::after{content:'';position:absolute;inset:0;background:linear-gradient(to top,rgba(42,26,20,.6),transparent 50%);opacity:0;transition:opacity .3s}
 .gallery-item:hover::after{opacity:1}
+@media(max-width:900px){.gallery{grid-template-columns:repeat(3,1fr)}}
+@media(max-width:500px){.gallery{grid-template-columns:repeat(2,1fr)}}
 
 /* ANTES/DEPOIS SECTION */
 .comp-section{background:var(--sand);padding:100px 24px;max-width:none}
@@ -125,6 +147,45 @@ section{padding:100px 24px;max-width:1200px;margin:0 auto}
 .print-card img{width:100%;display:block}
 @media(max-width:1000px){.prints-grid{grid-template-columns:repeat(3,1fr)}}
 @media(max-width:700px){.prints-grid{grid-template-columns:repeat(2,1fr);gap:14px}}
+
+/* CUIDADOS POS */
+.care-section{background:var(--cream);max-width:none;padding:100px 24px}
+.care-inner{max-width:1100px;margin:0 auto}
+.care-list{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;margin-top:40px}
+@media(max-width:700px){.care-list{grid-template-columns:1fr}}
+.care-item{background:var(--sand);border-radius:14px;overflow:hidden;border:1px solid rgba(176,141,87,.15);transition:all .3s}
+.care-item.open{box-shadow:0 15px 40px rgba(42,26,20,.1);background:#fff;border-color:rgba(176,141,87,.35)}
+.care-head{display:flex;align-items:center;gap:14px;padding:16px 20px;cursor:pointer;user-select:none}
+.care-head .ico{width:42px;height:42px;background:rgba(176,141,87,.15);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0}
+.care-head h4{flex:1;font-size:17px;color:var(--dark);font-weight:500;margin:0;line-height:1.2}
+.care-head .chev{color:var(--gold);transition:transform .3s;font-size:16px}
+.care-item.open .chev{transform:rotate(180deg)}
+.care-body{max-height:0;overflow:hidden;transition:max-height .5s ease;padding:0 20px}
+.care-item.open .care-body{max-height:700px;padding-bottom:20px}
+.care-body p{color:var(--text);font-size:14px;line-height:1.75;margin:0;white-space:pre-line}
+
+/* MODAL PROFISSIONAL */
+.pro-modal{position:fixed;inset:0;background:rgba(10,5,2,.85);backdrop-filter:blur(6px);z-index:150;display:none;align-items:center;justify-content:center;padding:20px}
+.pro-modal.open{display:flex}
+.pro-card{background:var(--cream);border-radius:20px;padding:36px;max-width:440px;width:100%;box-shadow:0 30px 80px rgba(0,0,0,.4);position:relative;max-height:90vh;overflow-y:auto}
+.pro-close{position:absolute;top:14px;right:18px;background:none;border:none;font-size:26px;cursor:pointer;color:var(--dark);line-height:1}
+.pro-card h3{font-size:26px;margin-bottom:6px;color:var(--dark)}
+.pro-card p.sub{color:var(--muted);font-size:14px;margin-bottom:22px}
+.pro-field{margin-bottom:14px}
+.pro-field label{display:block;font-size:11px;letter-spacing:2px;color:var(--muted);text-transform:uppercase;margin-bottom:6px}
+.pro-field input,.pro-field select{width:100%;padding:12px 14px;border:1.5px solid var(--sand);background:#fff;border-radius:8px;font-family:inherit;font-size:14px;color:var(--text);transition:border .2s}
+.pro-field input:focus,.pro-field select:focus{outline:none;border-color:var(--gold)}
+.pro-preview{background:#e7f5de;border:1px solid rgba(42,75,34,.15);border-radius:10px;padding:14px 16px;font-size:13px;color:#2a4b22;margin-top:10px;margin-bottom:14px;max-height:200px;overflow-y:auto;white-space:pre-line;line-height:1.55;display:none}
+.pro-preview.show{display:block}
+.pro-btn{width:100%;background:#25d366;color:#fff;border:none;padding:14px;border-radius:30px;font-weight:600;font-size:13px;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:8px;transition:all .3s;font-family:inherit;letter-spacing:1px}
+.pro-btn:hover{background:#1ebe57}
+.pro-btn:disabled{background:#bbb;cursor:not-allowed}
+.pro-btn-dark{background:var(--dark)}
+.pro-btn-dark:hover{background:var(--gold)}
+.pro-error{color:#b63232;font-size:13px;margin-top:10px;display:none}
+.pro-error.show{display:block}
+.pro-logout{display:block;text-align:center;margin-top:14px;font-size:12px;color:var(--muted);cursor:pointer;background:none;border:none;font-family:inherit;width:100%}
+.pro-logout:hover{color:var(--dark)}
 
 /* LIGHTBOX */
 .lightbox{position:fixed;inset:0;background:rgba(10,5,2,.92);z-index:200;display:none;align-items:center;justify-content:center;padding:30px;cursor:zoom-out}
@@ -246,6 +307,7 @@ footer p{opacity:.6}
   .comp{height:380px}
   .wpp-btn{width:54px;height:54px}
   .chat-btn{width:50px;height:50px}
+  .lgpd{bottom:auto;top:80px;left:50%;transform:translateX(-50%);width:calc(100% - 28px);font-size:12px;padding:10px 16px;flex-wrap:wrap;justify-content:center;text-align:center;gap:10px}
 }
 </style>
 </head>
@@ -260,6 +322,7 @@ footer p{opacity:.6}
       <li><a href="#servicos">Serviços</a></li>
       <li><a href="#galeria">Galeria</a></li>
       <li><a href="#depoimentos">Depoimentos</a></li>
+      <li><a href="#cuidados">Cuidados</a></li>
       <li><a href="#contato">Contato</a></li>
     </ul>
     <a href="#contato" class="nav-cta">Agendar</a>
@@ -269,7 +332,7 @@ footer p{opacity:.6}
 
 <!-- HERO -->
 <section class="hero">
-  <div class="hero-text reveal">
+  <div class="hero-text">
     <h1>Beleza que <em>revela</em> sua essência</h1>
     <p class="lead">Studio especializado em design de sobrancelhas, micropigmentação e extensão de cílios. Técnicas profissionais para realçar o que há de mais bonito em você.</p>
     <div class="hero-cta">
@@ -277,8 +340,15 @@ footer p{opacity:.6}
       <a href="#servicos" class="btn btn-outline">Ver serviços</a>
     </div>
   </div>
-  <div class="hero-img reveal">
-    <img src="img/hero.jpg" alt="Trabalho da Kimberlly — sobrancelha e micropigmentação labial">
+  <div class="hero-img">
+    <div class="hero-ring"></div>
+    <div class="hero-img-wrap">
+      <img src="img/hero.jpg" alt="Trabalho da Kimberlly — sobrancelha e micropigmentação labial">
+    </div>
+    <span class="hero-sparkle s1"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l1.8 5.4L19 9l-5.2 1.6L12 16l-1.8-5.4L5 9l5.2-1.6L12 2z"/></svg></span>
+    <span class="hero-sparkle s2"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l1.8 5.4L19 9l-5.2 1.6L12 16l-1.8-5.4L5 9l5.2-1.6L12 2z"/></svg></span>
+    <span class="hero-sparkle s3"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l1.8 5.4L19 9l-5.2 1.6L12 16l-1.8-5.4L5 9l5.2-1.6L12 2z"/></svg></span>
+    <span class="hero-sparkle s4"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l1.8 5.4L19 9l-5.2 1.6L12 16l-1.8-5.4L5 9l5.2-1.6L12 2z"/></svg></span>
     <div class="hero-badge">
       <div class="hero-badge-num">+500</div>
       <div class="hero-badge-txt">clientes atendidas com amor</div>
@@ -468,15 +538,15 @@ footer p{opacity:.6}
     </div>
     <div class="ad-grid reveal">
       <div class="ad-card" onclick="abrirLightbox('img/antes-depois-1.jpg')">
-        <img src="img/antes-depois-1.jpg" alt="Antes e depois micropigmentação labial">
+        <img src="img/antes-depois-1.jpg" alt="Antes e depois micropigmentação labial" loading="lazy">
         <span>Micropigmentação Labial</span>
       </div>
       <div class="ad-card" onclick="abrirLightbox('img/antes-depois-2.jpg')">
-        <img src="img/antes-depois-2.jpg" alt="Antes e depois micropigmentação labial">
+        <img src="img/antes-depois-2.jpg" alt="Antes e depois micropigmentação labial" loading="lazy">
         <span>Micropigmentação Labial</span>
       </div>
       <div class="ad-card" onclick="abrirLightbox('img/antes-depois-3.jpg')">
-        <img src="img/antes-depois-3.jpg" alt="Adeus lábios apagados — antes e depois">
+        <img src="img/antes-depois-3.jpg" alt="Adeus lábios apagados — antes e depois" loading="lazy">
         <span>Adeus lábios apagados</span>
       </div>
     </div>
@@ -491,11 +561,12 @@ footer p{opacity:.6}
     <p>Um pouquinho da magia que acontece no studio todos os dias.</p>
   </div>
   <div class="gallery reveal">
-    <div class="gallery-item"><img src="img/g-labios-gloss.jpg" alt="Micropigmentação labial"></div>
-    <div class="gallery-item"><img src="img/g-cilios.jpg" alt="Extensão de cílios"></div>
-    <div class="gallery-item"><img src="img/g-sobrancelha-ruiva.jpg" alt="Design de sobrancelhas"></div>
-    <div class="gallery-item"><img src="img/sobre.jpg" alt="Sobrancelha com cílios aplicados"></div>
-    <div class="gallery-item"><img src="img/hero.jpg" alt="Cliente após micropigmentação"></div>
+    <div class="gallery-item" onclick="abrirLightbox('img/g-labios-gloss.jpg')"><img src="img/g-labios-gloss.jpg" alt="Micropigmentação labial" loading="lazy"></div>
+    <div class="gallery-item" onclick="abrirLightbox('img/g-cilios.jpg')"><img src="img/g-cilios.jpg" alt="Extensão de cílios" loading="lazy"></div>
+    <div class="gallery-item" onclick="abrirLightbox('img/g-sobrancelha-ruiva.jpg')"><img src="img/g-sobrancelha-ruiva.jpg" alt="Design de sobrancelhas" loading="lazy"></div>
+    <div class="gallery-item" onclick="abrirLightbox('img/g-olhar-ruiva.jpg')"><img src="img/g-olhar-ruiva.jpg" alt="Lash lifting e sobrancelha penteada" loading="lazy"></div>
+    <div class="gallery-item" onclick="abrirLightbox('img/sobre.jpg')"><img src="img/sobre.jpg" alt="Sobrancelha com cílios aplicados" loading="lazy"></div>
+    <div class="gallery-item" onclick="abrirLightbox('img/hero.jpg')"><img src="img/hero.jpg" alt="Cliente após micropigmentação" loading="lazy"></div>
   </div>
 </section>
 
@@ -559,13 +630,66 @@ footer p{opacity:.6}
     <p>Conversas do Instagram e WhatsApp — autoestima restaurada depois de cada atendimento.</p>
   </div>
   <div class="prints-grid reveal">
-    <div class="print-card" onclick="abrirLightbox('img/depo-natasha.jpg')"><img src="img/depo-natasha.jpg" alt="Feedback Natasha"></div>
-    <div class="print-card" onclick="abrirLightbox('img/depo-danielle.jpg')"><img src="img/depo-danielle.jpg" alt="Feedback Danielle"></div>
-    <div class="print-card" onclick="abrirLightbox('img/depo-manuela.jpg')"><img src="img/depo-manuela.jpg" alt="Feedback Manuela"></div>
-    <div class="print-card" onclick="abrirLightbox('img/depo-rebeca.jpg')"><img src="img/depo-rebeca.jpg" alt="Feedback Rebeca"></div>
-    <div class="print-card" onclick="abrirLightbox('img/depo-janine.jpg')"><img src="img/depo-janine.jpg" alt="Feedback Janine — Studio Janine Bolico"></div>
+    <div class="print-card" onclick="abrirLightbox('img/depo-natasha.jpg')"><img src="img/depo-natasha.jpg" alt="Feedback Natasha" loading="lazy"></div>
+    <div class="print-card" onclick="abrirLightbox('img/depo-danielle.jpg')"><img src="img/depo-danielle.jpg" alt="Feedback Danielle" loading="lazy"></div>
+    <div class="print-card" onclick="abrirLightbox('img/depo-manuela.jpg')"><img src="img/depo-manuela.jpg" alt="Feedback Manuela" loading="lazy"></div>
+    <div class="print-card" onclick="abrirLightbox('img/depo-rebeca.jpg')"><img src="img/depo-rebeca.jpg" alt="Feedback Rebeca" loading="lazy"></div>
+    <div class="print-card" onclick="abrirLightbox('img/depo-janine.jpg')"><img src="img/depo-janine.jpg" alt="Feedback Janine — Studio Janine Bolico" loading="lazy"></div>
   </div>
 </section>
+
+<!-- CUIDADOS POS -->
+<section class="care-section" id="cuidados">
+  <div class="care-inner">
+    <div class="section-head reveal">
+      <span class="eyebrow">Pós-procedimento</span>
+      <h2>Cuidados após cada serviço</h2>
+      <p>Siga as orientações abaixo para garantir o melhor resultado e prolongar a durabilidade do seu procedimento.</p>
+    </div>
+    <div class="care-list reveal" id="careList"></div>
+  </div>
+</section>
+
+<!-- MODAL PROFISSIONAL -->
+<div class="pro-modal" id="proModal" onclick="if(event.target===this)fecharPro()">
+  <div class="pro-card">
+    <button class="pro-close" onclick="fecharPro()">×</button>
+    <div id="proLogin">
+      <h3>Área da Kim</h3>
+      <p class="sub">Digite o PIN para liberar o envio dos cuidados pós-procedimento direto no WhatsApp da cliente.</p>
+      <div class="pro-field">
+        <label>PIN</label>
+        <input type="password" id="proPin" placeholder="••••" autocomplete="off" onkeydown="if(event.key==='Enter')entrarPro()">
+      </div>
+      <button class="pro-btn pro-btn-dark" onclick="entrarPro()">Entrar</button>
+      <p class="pro-error" id="proErr">PIN incorreto, tente novamente.</p>
+    </div>
+    <div id="proPanel" style="display:none">
+      <h3>Enviar cuidados pós</h3>
+      <p class="sub">A mensagem é gerada automaticamente e abre o WhatsApp da cliente.</p>
+      <div class="pro-field">
+        <label>Telefone da cliente</label>
+        <input type="tel" id="proTel" placeholder="(51) 00000-0000" oninput="mascaraTel(this);preparaPreview()">
+      </div>
+      <div class="pro-field">
+        <label>Nome (opcional)</label>
+        <input type="text" id="proNome" placeholder="Ex: Natasha" oninput="preparaPreview()">
+      </div>
+      <div class="pro-field">
+        <label>Serviço realizado</label>
+        <select id="proServ" onchange="preparaPreview()">
+          <option value="">Selecione</option>
+        </select>
+      </div>
+      <div class="pro-preview" id="proPreview"></div>
+      <button class="pro-btn" id="proEnv" onclick="enviarCuidados()" disabled>
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347"/></svg>
+        Abrir WhatsApp da cliente
+      </button>
+      <button class="pro-logout" onclick="sairPro()">Sair da área profissional</button>
+    </div>
+  </div>
+</div>
 
 <!-- LIGHTBOX -->
 <div class="lightbox" id="lightbox" onclick="fecharLightbox()">
@@ -641,6 +765,7 @@ footer p{opacity:.6}
 <!-- FOOTER -->
 <footer>
   <p>© 2026 Kimberlly Studio · Todos os direitos reservados</p>
+  <p style="margin-top:6px;font-size:11px;opacity:.45"><a href="#" onclick="abrirPro();return false" style="color:inherit;letter-spacing:1px">Área da Kim</a></p>
 </footer>
 
 <!-- WHATSAPP FLUTUANTE -->
@@ -674,6 +799,11 @@ const topBtn = document.getElementById('topBtn');
 window.addEventListener('scroll',()=>{
   nav.classList.toggle('scrolled',window.scrollY>30);
   topBtn.classList.toggle('visible',window.scrollY>400);
+});
+
+// Fecha menu mobile ao clicar em qualquer link
+document.querySelectorAll('#navLinks a').forEach(a=>{
+  a.addEventListener('click',()=>document.getElementById('navLinks').classList.remove('open'));
 });
 
 // Reveal
@@ -733,8 +863,8 @@ function enviarFormulario(e){
   const tel = document.getElementById('fTel').value;
   const serv = document.getElementById('fServ').value;
   const msg = document.getElementById('fMsg').value;
-  const texto = `Olá, Kim! Meu nome é *${nome}*.%0AWhatsApp: ${tel}%0AServiço: ${serv}${msg?'%0AObservações: '+msg:''}`;
-  window.open(`https://wa.me/5551991934161?text=${texto}`,'_blank');
+  const texto = `Olá, Kim! Meu nome é *${nome}*.\nWhatsApp: ${tel}\nServiço: ${serv}${msg?'\nObservações: '+msg:''}`;
+  window.open(`https://wa.me/5551991934161?text=${encodeURIComponent(texto)}`,'_blank');
 }
 
 // LGPD
@@ -783,6 +913,191 @@ function toggleChat(){
   if(box.classList.contains('open') && !document.getElementById('chatBody').children.length){
     renderChat('inicio');
   }
+}
+
+// CUIDADOS POS-PROCEDIMENTO
+const CUIDADOS_POS = {
+  'Design com Henna': `🌿 *Primeiras 24h:* não molhe a região, evite sol direto, sauna e piscina.
+❌ Sem sabonetes, esfoliantes ou produtos oleosos na área.
+✋ Não coce nem esfregue — pode tirar a pigmentação.
+💧 Depois de 24h, lave com água e sabão neutro, sem esfregar.
+☀️ Use protetor solar diário — a cor dura até 15 dias.`,
+  'Design Personalizado': `❄️ Se sentir ardência, faça compressa gelada na região.
+🚫 Evite maquiagem nas sobrancelhas por 4-6 horas.
+☀️ Sem sol direto por 24h após a depilação.
+✋ Não coce — é normal sentir uma leve irritação pontual.
+💧 Hidrate a pele normalmente após 24 horas.`,
+  'Brow Lamination': `💧 *Primeiras 24h:* NÃO molhe, não use cremes, maquiagem ou óleos na região.
+🔥 Evite sauna, vapor, banho muito quente e calor intenso por 24h.
+🖌 A partir do 2º dia, penteie os fios com a escovinha todo dia.
+🌿 Hidrate com óleo de rícino 2x ao dia para manter o brilho.
+📆 Duração: 6 a 8 semanas. Reposição em 1,5 a 2 meses.`,
+  'Micropigmentação de Sobrancelhas': `💧 *Primeiras 24h:* não molhe a área.
+🧼 Higienize 3x ao dia com soro fisiológico e gaze limpa.
+💆‍♀️ Aplique a pomada cicatrizante em camada fina, sem esfregar.
+❌ NÃO arranque as casquinhas — soltam sozinhas entre 5 e 10 dias.
+☀️ Sem sol direto, piscina, sauna ou mar por *15 dias*.
+🏋️ Evite exercícios pesados e suor excessivo por 7 dias.
+🍔 Dieta leve — alimentos gordurosos afetam a cicatrização.
+💄 Nada de maquiagem na região por 10 dias.
+📅 Retoque em 30 a 60 dias é parte do tratamento.`,
+  'Retoque de Micropigmentação': `💧 *Primeiras 24h:* não molhe a área.
+🧼 Higienize 3x ao dia com soro fisiológico e gaze limpa.
+💆‍♀️ Aplique a pomada cicatrizante em camada fina.
+❌ NÃO arranque as casquinhas — soltam sozinhas.
+☀️ Sem sol direto, piscina, sauna ou mar por 15 dias.
+🏋️ Evite suor excessivo por 7 dias.
+💄 Nada de maquiagem na região por 10 dias.`,
+  'Micropigmentação Labial': `💦 Inchaço e ressecamento são normais nos primeiros 2-3 dias.
+💊 Se você já teve herpes, tome o antiviral (aciclovir) conforme orientação por 5 dias.
+💆‍♀️ Reaplique a pomada cicatrizante sempre que os lábios ressecarem.
+🥤 Use canudo por 3 dias para evitar atrito ao beber.
+🌶 Sem comidas quentes, ácidas, com sal grosso ou pimenta por 7 dias.
+💋 Sem beijos por 7 a 10 dias (evita herpes e contaminação).
+☀️ Sem sol direto, piscina, sauna ou mar por *20 dias*.
+❌ NÃO arranque as casquinhas — caem entre 5 e 7 dias.
+🎨 A cor clareia 40-60% na cicatrização — é totalmente normal!
+📅 Retoque em 30 a 60 dias.`,
+  'Retoque Labial': `💦 Pequeno inchaço nos primeiros dias é normal.
+💊 Se já teve herpes, use o antiviral por 5 dias.
+💆‍♀️ Reaplique a pomada cicatrizante quando ressecar.
+🥤 Use canudo por 2 dias.
+🌶 Evite comidas quentes, ácidas ou picantes por 5 dias.
+💋 Sem beijos por 5 a 7 dias.
+☀️ Sem sol direto, piscina, sauna ou mar por 15 dias.
+❌ Não arranque as casquinhas.`,
+  'Lash Lifting': `💧 *Primeiras 24h:* não molhe, não lave, não use maquiagem nos olhos.
+🔥 Sem sauna, vapor ou banho muito quente por 24h.
+🛌 Não durma de bruços nas primeiras 24h.
+✋ Não esfregue os olhos nem aperte os cílios.
+🌿 A partir do 2º dia, aplique óleo de rícino 1x ao dia para hidratar.
+📆 Duração: 6 a 8 semanas — repita quando o efeito perder naturalidade.`,
+  'Extensão de Cílios - Nova': `💧 *Primeiras 24h:* não molhe, sem vapor, sauna ou piscina.
+🧼 Higienize diariamente com shampoo próprio para extensão e pincel macio.
+🖌 Penteie com a escovinha 1x ao dia, pela manhã.
+❌ Nada de rímel, demaquilante oleoso ou cremes oleosos na área.
+🛌 Durma de barriga para cima ou de lado — evite pressão nos fios.
+✋ Não puxe os fios — espere a queda natural.
+💅 Cuidado ao coçar o rosto se tiver unhas longas.
+📅 Manutenção entre 15 e 20 dias para manter o volume perfeito.`,
+  'Manutenção de Cílios 15 dias': `💧 Primeiras 24h: sem água nos cílios, sauna ou vapor.
+🧼 Lave todos os dias com shampoo próprio + pincel macio.
+🖌 Penteie com a escovinha toda manhã.
+❌ Sem rímel nem demaquilante oleoso.
+🛌 Durma de barriga para cima ou de lado.
+📅 Próxima manutenção em até 15 dias.`,
+  'Manutenção de Cílios 20 dias': `💧 Primeiras 24h: sem água, sauna ou vapor.
+🧼 Lave todos os dias com shampoo próprio.
+🖌 Penteie com a escovinha pela manhã.
+❌ Sem rímel nem demaquilante oleoso.
+🛌 Durma de barriga para cima ou de lado.
+📅 Próxima manutenção em até 20 dias.`,
+  'Manutenção de Cílios 30 dias': `💧 Primeiras 24h: sem água, sauna ou vapor.
+🧼 Higienização diária com shampoo próprio.
+🖌 Penteie com a escovinha todo dia.
+❌ Sem rímel nem demaquilante oleoso.
+🛌 Durma de barriga para cima ou de lado.
+📅 Próxima manutenção em até 30 dias.`
+};
+const EMOJIS_POS = {
+  'Design com Henna':'🌿','Design Personalizado':'✨','Brow Lamination':'🖌',
+  'Micropigmentação de Sobrancelhas':'🎨','Retoque de Micropigmentação':'🔁',
+  'Micropigmentação Labial':'💋','Retoque Labial':'💄',
+  'Lash Lifting':'👁','Extensão de Cílios - Nova':'🌙',
+  'Manutenção de Cílios 15 dias':'🔄','Manutenção de Cílios 20 dias':'🔄','Manutenção de Cílios 30 dias':'🔄'
+};
+
+const careList = document.getElementById('careList');
+const proServSelect = document.getElementById('proServ');
+Object.keys(CUIDADOS_POS).forEach(nome=>{
+  const item = document.createElement('div');
+  item.className = 'care-item';
+  const tituloLimpo = nome.replace(' - Nova',' (primeira aplicação)');
+  item.innerHTML = `<div class="care-head"><div class="ico">${EMOJIS_POS[nome]||'✨'}</div><h4>${tituloLimpo}</h4><span class="chev">⌄</span></div><div class="care-body"><p></p></div>`;
+  item.querySelector('.care-body p').textContent = CUIDADOS_POS[nome];
+  item.querySelector('.care-head').addEventListener('click',()=>item.classList.toggle('open'));
+  careList.appendChild(item);
+  const opt = document.createElement('option');
+  opt.value = nome; opt.textContent = tituloLimpo;
+  proServSelect.appendChild(opt);
+});
+
+// FERRAMENTA PROFISSIONAL
+const PIN_KIM = 'kim1234';
+let proAuth = sessionStorage.getItem('kim_pro')==='1';
+function abrirPro(){
+  document.getElementById('proModal').classList.add('open');
+  if(proAuth){
+    document.getElementById('proLogin').style.display = 'none';
+    document.getElementById('proPanel').style.display = 'block';
+  } else {
+    document.getElementById('proLogin').style.display = 'block';
+    document.getElementById('proPanel').style.display = 'none';
+    setTimeout(()=>document.getElementById('proPin').focus(),50);
+  }
+}
+function fecharPro(){
+  document.getElementById('proModal').classList.remove('open');
+}
+function entrarPro(){
+  const pin = document.getElementById('proPin').value.trim();
+  if(pin === PIN_KIM){
+    proAuth = true;
+    sessionStorage.setItem('kim_pro','1');
+    document.getElementById('proLogin').style.display = 'none';
+    document.getElementById('proPanel').style.display = 'block';
+    document.getElementById('proErr').classList.remove('show');
+    document.getElementById('proPin').value = '';
+  } else {
+    document.getElementById('proErr').classList.add('show');
+  }
+}
+function sairPro(){
+  proAuth = false;
+  sessionStorage.removeItem('kim_pro');
+  document.getElementById('proPanel').style.display = 'none';
+  document.getElementById('proLogin').style.display = 'block';
+  document.getElementById('proTel').value='';
+  document.getElementById('proNome').value='';
+  document.getElementById('proServ').value='';
+  document.getElementById('proPreview').classList.remove('show');
+  document.getElementById('proEnv').disabled = true;
+}
+function montarMensagemPos(nome, servico){
+  const primeiro = nome.trim().split(' ')[0];
+  const ola = primeiro ? primeiro : 'querida';
+  const servLimpo = servico.replace(' - Nova','').trim();
+  return `Oi, ${ola}! 💛
+
+Foi um prazer te receber hoje no studio. Pra garantir o melhor resultado do seu *${servLimpo}*, segue o passo a passo dos cuidados pós-procedimento:
+
+${CUIDADOS_POS[servico]}
+
+Qualquer dúvida, me chame por aqui! Até breve ✨
+— Kim · Kimberlly Studio`;
+}
+function preparaPreview(){
+  const tel = document.getElementById('proTel').value.replace(/\D/g,'');
+  const serv = document.getElementById('proServ').value;
+  const nome = document.getElementById('proNome').value;
+  const prev = document.getElementById('proPreview');
+  const btn = document.getElementById('proEnv');
+  if(serv){
+    prev.textContent = montarMensagemPos(nome, serv);
+    prev.classList.add('show');
+  } else {
+    prev.classList.remove('show');
+  }
+  btn.disabled = !(tel.length>=10 && serv);
+}
+function enviarCuidados(){
+  const tel = document.getElementById('proTel').value.replace(/\D/g,'');
+  const serv = document.getElementById('proServ').value;
+  const nome = document.getElementById('proNome').value;
+  if(tel.length<10 || !serv) return;
+  const numero = (tel.length===10 || tel.length===11) ? '55'+tel : tel;
+  const msg = encodeURIComponent(montarMensagemPos(nome, serv));
+  window.open(`https://wa.me/${numero}?text=${msg}`,'_blank');
 }
 </script>
 </body>
